@@ -224,20 +224,21 @@ Options -Indexes
 
 
 #region Redirects
+#region SEO
+#region Fix warnings
+RewriteCond %{REQUEST_URI} ^/favicon.ico$ [OR]
+RewriteCond %{REQUEST_URI} ^/apple-touch-icon.png$ [OR]
+RewriteCond %{REQUEST_URI} ^/robots.txt$
+RewriteRule ^(.*)$ - [R=204,L]
+#endregion Fix warnings
+#endregion SEO
+
+
 #region General
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ / [R=301,QSD,L]
 #endregion General
-
-
-#region SEO
-#region Fix favicon 404s
-RewriteCond %{REQUEST_URI} ^/favicon.ico$ [OR]
-RewriteCond %{REQUEST_URI} ^/apple-touch-icon.png$
-RewriteRule ^(.*)$ - [R=204,L]
-#endregion Fix favicon 404s
-#endregion SEO
 #endregion Redirects
 
 

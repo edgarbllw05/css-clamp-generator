@@ -284,7 +284,7 @@ Header always unset Etag
 #region Security
 # Only allow your own domain in the HTML `base` tag
 # Only allow your own domain and whitelist to be embedded inside of iFrames
-Header set Content-Security-Policy "base-uri 'self'; frame-ancestors 'self'"
+Header set Content-Security-Policy "base-uri 'self'; frame-ancestors 'self'; script-src 'self'"
 # Disable powerful (but also potencially dangerous) JavaScript features you know, you'll never gonna use
 Header set Permissions-Policy "accelerometer=(), camera=(), autoplay=(), display-capture=(), encrypted-media=(), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), magnetometer=(), microphone=(), midi=(), payment=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=()"
 # Hide the HTTP referrer for cross-origin requests

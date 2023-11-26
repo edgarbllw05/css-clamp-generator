@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Linear Scaling for Fluid Font Sizes and Spacing">
+	<meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+	<link rel="canonical" href="https://css-clamp-generator.com">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="CSS clamp() Generator">
+	<meta property="og:description" content="Linear Scaling for Fluid Font Sizes and Spacing">
+	<meta property="og:url" content="https://css-clamp-generator.com">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="CSS clamp() Generator">
+	<meta name="twitter:description" content="Linear Scaling for Fluid Font Sizes and Spacing">
+	<title>CSS clamp() Generator</title>
+	<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiBmaWxsPSJoc2woMjQwIDEwJSAzLjklKSI+Cgk8cGF0aCBkPSJNMzgwLTcyMHYtOThMMTQyLTU4MGg5OHY2MEg0MHYtMjAwaDYwdjk4bDIzOC0yMzhoLTk4di02MGgyMDB2MjAwaC02MFpNNTkzLTQwcS0yNCAwLTQ2LTl0LTM5LTI2TDMwNC0yODBsMzAtMzFxMTYtMTYgMzcuNS0yMS41dDQyLjUuNWw2NiAxOXYtMzI3cTAtMTcgMTEuNS0yOC41VDUyMC02ODBxMTcgMCAyOC41IDExLjVUNTYwLTY0MHY0MzNsLTk3LTI3IDEwMiAxMDJxNSA1IDEyLjUgOC41VDU5My0xMjBoMTY3cTMzIDAgNTYuNS0yMy41VDg0MC0yMDB2LTE2MHEwLTE3IDExLjUtMjguNVQ4ODAtNDAwcTE3IDAgMjguNSAxMS41VDkyMC0zNjB2MTYwcTAgNjYtNDcgMTEzVDc2MC00MEg1OTNabTctMjgwdi0xNjBxMC0xNyAxMS41LTI4LjVUNjQwLTUyMHExNyAwIDI4LjUgMTEuNVQ2ODAtNDgwdjE2MGgtODBabTEyMCAwdi0xMjBxMC0xNyAxMS41LTI4LjVUNzYwLTQ4MHExNyAwIDI4LjUgMTEuNVQ4MDAtNDQwdjEyMGgtODBabS0yMCA4MFoiPjwvcGF0aD4KPC9zdmc+" media="(prefers-color-scheme: light)">
+	<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiBmaWxsPSJoc2woMjQwIDEwJSAzLjklKSI+Cgk8cGF0aCBkPSJNMzgwLTcyMHYtOThMMTQyLTU4MGg5OHY2MEg0MHYtMjAwaDYwdjk4bDIzOC0yMzhoLTk4di02MGgyMDB2MjAwaC02MFpNNTkzLTQwcS0yNCAwLTQ2LTl0LTM5LTI2TDMwNC0yODBsMzAtMzFxMTYtMTYgMzcuNS0yMS41dDQyLjUuNWw2NiAxOXYtMzI3cTAtMTcgMTEuNS0yOC41VDUyMC02ODBxMTcgMCAyOC41IDExLjVUNTYwLTY0MHY0MzNsLTk3LTI3IDEwMiAxMDJxNSA1IDEyLjUgOC41VDU5My0xMjBoMTY3cTMzIDAgNTYuNS0yMy41VDg0MC0yMDB2LTE2MHEwLTE3IDExLjUtMjguNVQ4ODAtNDAwcTE3IDAgMjguNSAxMS41VDkyMC0zNjB2MTYwcTAgNjYtNDcgMTEzVDc2MC00MEg1OTNabTctMjgwdi0xNjBxMC0xNyAxMS41LTI4LjVUNjQwLTUyMHExNyAwIDI4LjUgMTEuNVQ2ODAtNDgwdjE2MGgtODBabTEyMCAwdi0xMjBxMC0xNyAxMS41LTI4LjVUNzYwLTQ4MHExNyAwIDI4LjUgMTEuNVQ4MDAtNDQwdjEyMGgtODBabS0yMCA4MFoiPjwvcGF0aD4KPC9zdmc+" media="(prefers-color-scheme: light)">
+	<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiBmaWxsPSJoc2woMCAwJSA5OCUpIj4KCTxwYXRoIGQ9Ik0zODAtNzIwdi05OEwxNDItNTgwaDk4djYwSDQwdi0yMDBoNjB2OThsMjM4LTIzOGgtOTh2LTYwaDIwMHYyMDBoLTYwWk01OTMtNDBxLTI0IDAtNDYtOXQtMzktMjZMMzA0LTI4MGwzMC0zMXExNi0xNiAzNy41LTIxLjV0NDIuNS41bDY2IDE5di0zMjdxMC0xNyAxMS41LTI4LjVUNTIwLTY4MHExNyAwIDI4LjUgMTEuNVQ1NjAtNjQwdjQzM2wtOTctMjcgMTAyIDEwMnE1IDUgMTIuNSA4LjVUNTkzLTEyMGgxNjdxMzMgMCA1Ni41LTIzLjVUODQwLTIwMHYtMTYwcTAtMTcgMTEuNS0yOC41VDg4MC00MDBxMTcgMCAyOC41IDExLjVUOTIwLTM2MHYxNjBxMCA2Ni00NyAxMTNUNzYwLTQwSDU5M1ptNy0yODB2LTE2MHEwLTE3IDExLjUtMjguNVQ2NDAtNTIwcTE3IDAgMjguNSAxMS41VDY4MC00ODB2MTYwaC04MFptMTIwIDB2LTEyMHEwLTE3IDExLjUtMjguNVQ3NjAtNDgwcTE3IDAgMjguNSAxMS41VDgwMC00NDB2MTIwaC04MFptLTIwIDgwWiI+PC9wYXRoPgo8L3N2Zz4=" media="(prefers-color-scheme: dark)">
+	<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiBmaWxsPSJoc2woMCAwJSA5OCUpIj4KCTxwYXRoIGQ9Ik0zODAtNzIwdi05OEwxNDItNTgwaDk4djYwSDQwdi0yMDBoNjB2OThsMjM4LTIzOGgtOTh2LTYwaDIwMHYyMDBoLTYwWk01OTMtNDBxLTI0IDAtNDYtOXQtMzktMjZMMzA0LTI4MGwzMC0zMXExNi0xNiAzNy41LTIxLjV0NDIuNS41bDY2IDE5di0zMjdxMC0xNyAxMS41LTI4LjVUNTIwLTY4MHExNyAwIDI4LjUgMTEuNVQ1NjAtNjQwdjQzM2wtOTctMjcgMTAyIDEwMnE1IDUgMTIuNSA4LjVUNTkzLTEyMGgxNjdxMzMgMCA1Ni41LTIzLjVUODQwLTIwMHYtMTYwcTAtMTcgMTEuNS0yOC41VDg4MC00MDBxMTcgMCAyOC41IDExLjVUOTIwLTM2MHYxNjBxMCA2Ni00NyAxMTNUNzYwLTQwSDU5M1ptNy0yODB2LTE2MHEwLTE3IDExLjUtMjguNVQ2NDAtNTIwcTE3IDAgMjguNSAxMS41VDY4MC00ODB2MTYwaC04MFptMTIwIDB2LTEyMHEwLTE3IDExLjUtMjguNVQ3NjAtNDgwcTE3IDAgMjguNSAxMS41VDgwMC00NDB2MTIwaC04MFptLTIwIDgwWiI+PC9wYXRoPgo8L3N2Zz4=" media="(prefers-color-scheme: dark)">
+	<link rel="stylesheet" href="assets/min/main.css">
+	<script type="module" src="assets/min/main.js"></script>
+</head>
+<body>
+	<div class="wrapper padding-block-spacing-sm">
+		<div class="flow from-mobile-text-center text-balance">
+			<h1 class="heading-3">CSS clamp() Generator</h1>
+			<p class="text-lg">Linear Scaling for Fluid Font Sizes and Spacing</p>
+		</div>
+		<div class="form | margin-top-spacing-sm">
+			<div class="form__columns">
+				<div class="form__column">
+					<label for="min-viewport" class="form__label">Minimum viewport width</label>
+					<div class="form__field">
+						<input type="text" id="min-viewport" class="form__field-control" value="600" placeholder="600" inputmode="numeric" spellcheck="false" data-value="600">
+						<div class="form__field-suffix">PX</div>
+					</div>
+					<p class="form__field-description"><small>At which viewport the dynamic value stops shrinking.</small></p>
+				</div>
+				<div class="form__column">
+					<label for="max-viewport" class="form__label">Maximum viewport width</label>
+					<div class="form__field">
+						<input type="text" id="max-viewport" class="form__field-control" value="1000" placeholder="1000" inputmode="numeric" spellcheck="false" data-value="1000">
+						<div class="form__field-suffix">PX</div>
+					</div>
+					<p class="form__field-description"><small>At which viewport the dynamic value stops growing.</small></p>
+				</div>
+			</div>
+			<div class="form__columns">
+				<div class="form__column">
+					<label for="min-value" class="form__label">Minimum value</label>
+					<div class="form__field">
+						<input type="text" id="min-value" class="form__field-control" value="1.875" placeholder="1.875" inputmode="decimal" spellcheck="false" data-value="1.875">
+						<div class="form__field-suffix">REM</div>
+					</div>
+					<p class="form__field-description"><small>The minimum acceptable size for the preferred value.</small></p>
+				</div>
+				<div class="form__column">
+					<label for="max-value" class="form__label">Maximum value</label>
+					<div class="form__field">
+						<input type="text" id="max-value" class="form__field-control" value="3" placeholder="3" inputmode="decimal" spellcheck="false" data-value="3">
+						<div class="form__field-suffix">REM</div>
+					</div>
+					<p class="form__field-description"><small>The maximum acceptable size for the preferred value.</small></p>
+				</div>
+			</div>
+		</div>
+		<div class="result | margin-top-spacing-sm">
+			<div class="output-wrap">
+				<output class="output"><pre></pre></output>
+				<div class="output__options">
+					<button class="output__option" data-copy-output aria-label="Copy output">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+							<path d="M362.308-260.001q-30.308 0-51.307-21-21-21-21-51.308v-455.382q0-30.308 21-51.308 20.999-21 51.307-21h335.383q30.307 0 51.307 21 21 21 21 51.308v455.382q0 30.308-21 51.308t-51.307 21H362.308Zm0-59.999h335.383q4.615 0 8.462-3.846 3.846-3.847 3.846-8.463v-455.382q0-4.616-3.846-8.463-3.847-3.846-8.462-3.846H362.308q-4.616 0-8.462 3.846-3.847 3.847-3.847 8.463v455.382q0 4.616 3.847 8.463 3.846 3.846 8.462 3.846ZM222.309-120.003q-30.307 0-51.307-21-21-21-21-51.307v-515.381h59.999v515.381q0 4.616 3.846 8.462 3.847 3.847 8.462 3.847h395.382v59.998H222.309ZM349.999-320V-800-320Z"></path>
+						</svg>
+					</button>
+					<a href="https://modern-fluid-typography.vercel.app" target="_blank" class="output__option" data-check-formula aria-label="Check formula">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+							<path d="M212.309-140.001q-30.308 0-51.308-21t-21-51.308v-535.382q0-30.308 21-51.308t51.308-21h252.305V-760H212.309q-4.616 0-8.463 3.846-3.846 3.847-3.846 8.463v535.382q0 4.616 3.846 8.463 3.847 3.846 8.463 3.846h535.382q4.616 0 8.463-3.846 3.846-3.847 3.846-8.463v-252.305h59.999v252.305q0 30.308-21 51.308t-51.308 21H212.309Zm176.46-206.615-42.153-42.153L717.847-760H560v-59.999h259.999V-560H760v-157.847L388.769-346.616Z"></path>
+						</svg>
+					</a>
+					<button class="output__option" data-reset-inputs aria-label="Reset inputs">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+							<path d="M481.539-180.001q-125.625 0-212.812-87.17-87.187-87.169-87.187-212.768t87.187-212.829q87.187-87.231 212.812-87.231 70.154 0 132.769 31.193 62.615 31.192 104.153 88.039v-119.232h59.999v244.613H533.847v-59.998h157.999q-31.615-57.923-87.692-91.27Q548.077-720 481.539-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h63.229q-27.231 97.922-107.269 158.961-80.038 61.038-181.96 61.038Z"></path>
+						</svg>
+					</button>
+				</div>
+			</div>
+			<div class="settings">
+				<div class="checkbox-wrap">
+					<input type="checkbox" id="option-nested-calc" class="setting-option checkbox__field">
+					<label for="option-nested-calc" class="checkbox">
+						<span class="checkbox__box">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+								<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"></path>
+							</svg>
+						</span>
+						<span class="checkbox__text">Add nested calc()</span>
+					</label>
+				</div>
+				<div class="checkbox-wrap">
+					<input type="checkbox" id="option-font-size" class="setting-option checkbox__field">
+					<label for="option-font-size" class="checkbox">
+						<span class="checkbox__box">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+								<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"></path>
+							</svg>
+						</span>
+						<span class="checkbox__text">Add font-size property</span>
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -202,7 +202,7 @@ RewriteRule ^(.*)$ - [R=405,L]
 
 
 #region Sensitive file extensions
-# Files that do not contain a dot, have a dot at the beginning, or have a dot at the end => special files
+# Files that do not contain a dot, have a dot at the beginning, or have a dot at the end
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteCond %{REQUEST_URI} /([^/]+)$
 RewriteCond %1 (^\.|\.$|^([^.]+)$)
@@ -214,9 +214,9 @@ RewriteRule ^(.*)$ - [F,L]
 #region General
 # Hide server info on HTTP errors
 ServerSignature Off
-# Disable viewing files without specifying an extension within the URL (VERY IMPORTANT!)
+# Disable viewing files without specifying an extension
 Options -MultiViews
-# Follow symbolic links (almost always enabled by defaut)
+# Follow symbolic links
 Options +FollowSymLinks
 # Deny access to directories without an index file
 Options -Indexes
@@ -251,6 +251,8 @@ SetOutputFilter DEFLATE
 #region Charset
 # For `text/html` and `text/plain`
 AddDefaultCharset utf-8
+# For others
+AddCharset utf-8 css js
 #endregion Charset
 
 
@@ -264,7 +266,6 @@ AddType text/javascript															js
 #region Caching
 ExpiresActive On
 ExpiresDefault																						"now 4 months"
-
 # General
 ExpiresByType text/html																		"now 0 seconds"
 ExpiresByType text/css																		"now 1 year"
@@ -283,9 +284,8 @@ Header always unset Etag
 
 
 #region Security
-# Only allow your own domain in the HTML `base` tag
-# Only allow your own domain and whitelist to be embedded inside of iFrames
-Header set Content-Security-Policy "base-uri 'self'; frame-ancestors 'self'; script-src 'self'"
+# Only allow your own domain to be used within the HTML `<base>` and `<iframe>` tag
+Header set Content-Security-Policy "base-uri 'self'; frame-ancestors 'self'"
 # Disable powerful (but also potencially dangerous) JavaScript features you know, you'll never gonna use
 Header set Permissions-Policy "accelerometer=(), camera=(), autoplay=(), display-capture=(), encrypted-media=(), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), magnetometer=(), microphone=(), midi=(), payment=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=()"
 # Hide the HTTP referrer for cross-origin requests

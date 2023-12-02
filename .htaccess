@@ -210,7 +210,6 @@ RewriteRule ^(.*)$ - [F,L]
 
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteCond %{REQUEST_URI} .(markdown|md)$ [NC]
-RewriteCond %{REQUEST_URI} !^/wp-content/themes/edg-kit/content/
 RewriteRule ^(.*)$ - [F,L]
 #endregion Sensitive file extensions
 #endregion Deny access

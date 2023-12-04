@@ -19,11 +19,11 @@
 	--font-size-sm: .875rem;
 	--font-size-md: 1rem;
 	--font-size-lg: 1.125rem;
-	--font-size-xl: clamp(1.125rem, .9375rem + .5vw, 1.25rem);
-	--font-size-2xl: clamp(1.25rem, .875rem + 1vw, 1.5rem);
-	--font-size-3xl: clamp(1.5rem, .9375rem + 1.5vw, 1.875rem);
-	--font-size-4xl: clamp(1.875rem, 1.3125rem + 1.5vw, 2.25rem);
-	--font-size-5xl: clamp(1.875rem, .1875rem + 4.5vw, 3rem);
+	--font-size-xl: clamp(1.125rem, 1.0417rem + .3333vw, 1.25rem);
+	--font-size-2xl: clamp(1.25rem, 1.0833rem + .6667vw, 1.5rem);
+	--font-size-3xl: clamp(1.5rem, 1.25rem + 1vw, 1.875rem);
+	--font-size-4xl: clamp(1.875rem, 1.625rem + 1vw, 2.25rem);
+	--font-size-5xl: clamp(1.875rem, 1.125rem + 3vw, 3rem);
 
 	--font-weight-regular: 400;
 	--font-weight-medium: 500;
@@ -46,9 +46,9 @@
 	--wrapper-width: var(--wrapper-width-sm);
 	--wrapper-width-xs: 400px;
 	--wrapper-width-sm: 700px;
-	--wrapper-side-gap: clamp(1.25rem, -2.5rem + 10vw, 3.75rem);
+	--wrapper-side-gap: clamp(1.25rem, -.4167rem + 6.6667vw, 3.75rem);
 
-	--spacing-sm: clamp(2.5rem, .625rem + 5vw, 3.75rem);
+	--spacing-sm: clamp(2.5rem, 1.6667rem + 3.3333vw, 3.75rem);
 }
 
 @media (prefers-color-scheme: dark) {

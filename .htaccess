@@ -209,7 +209,7 @@ RewriteCond %1 (^\.|\.$|^([^.]+)$)
 RewriteRule ^(.*)$ - [F,L]
 
 RewriteCond %{REQUEST_FILENAME} -f
-RewriteCond %{REQUEST_URI} .(markdown|md)$ [NC]
+RewriteCond %{REQUEST_URI} .t(e)?xt$ [NC]
 RewriteRule ^(.*)$ - [F,L]
 #endregion Sensitive file extensions
 #endregion Deny access
@@ -256,13 +256,12 @@ SetOutputFilter DEFLATE
 # For `text/html` and `text/plain`
 AddDefaultCharset utf-8
 # For others
-AddCharset utf-8 md markdown css js
+AddCharset utf-8 css js
 #endregion Charset
 
 
 #region MIME types
 # General
-AddType text/markdown																md markdown
 AddType text/css																		css
 AddType text/javascript															js
 #endregion MIME types
@@ -273,7 +272,6 @@ ExpiresActive On
 ExpiresDefault																						"now 4 months"
 # General
 ExpiresByType text/html																		"now 0 seconds"
-ExpiresByType text/markdown																"now 0 seconds"
 ExpiresByType text/css																		"now 1 year"
 ExpiresByType text/javascript															"now 1 year"
 #endregion Caching

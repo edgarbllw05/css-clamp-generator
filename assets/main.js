@@ -119,4 +119,4 @@ document.addEventListener('click', e => {
 /* #endregion Output actions */
 
 
-console.log('%cGitHub repo: https://edgarbollow.com/go/github/repos/css-clamp-generator', 'font-size: .875rem;')
+console.log('%cGitHub Repo: https://edgarbollow.com/go/github/repos/css-clamp-generator', 'font-size: .875rem;')

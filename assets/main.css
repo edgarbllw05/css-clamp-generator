@@ -116,7 +116,6 @@ body {
 	line-height: var(--line-height-md);
 	text-underline-offset: .25em;
 	tab-size: 2;
-	overflow-x: hidden;
 	overflow-wrap: break-word;
 	text-rendering: optimizeSpeed;
 	font-smooth: always;
